@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-7n0&20@o6j)v%q2i&rky)j#+tv4r!4bt)-pg3n6eg&zjq%(_#7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []                                                              
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'chat.apps.ChatConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,3 +127,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+LOGIN_REDIRECT_URL = "chat-page"
+LOGOUT_REDIRECT_URL = "login-user"
