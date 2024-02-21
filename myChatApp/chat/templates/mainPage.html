@@ -2,13 +2,23 @@
 <html>
 <head>
     <title> HomePage</title>
-    <h1>Hey {{request.user}} </h1>
-    <button name="edit-name" id="edit">edit</button>
+    <h1>Hey {{  curPerson.first_name}} </h1>
+    <script>
+        function toggleForm() {
+            var form = document.getElementById('form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
 </head>
 <body>  
-    <form action = "" method = "post">
-        {% csrf_token %}
-        {{form.as_p }}
-        <input type="submit" value=Submit">
-    </form>
+    <button onclick="toggleForm()"> Toggle Edit</button>
+    {% if showDrop %}
+        <form id="form" style="display: none;" method="post" action= "{% url 'chat-page' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+   
+
 </body>
